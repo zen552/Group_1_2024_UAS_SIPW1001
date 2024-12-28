@@ -6,5 +6,4 @@ def floyd_triangle(n):
             num += 1
         print()
 
-# Contoh penggunaan
 floyd_triangle(5)
