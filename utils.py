@@ -1,10 +1,26 @@
 import importlib
 
 ALGORITHM_MAP = {
-    "basic": {
-        "euclidian": ("basic.euclidian", "Euclid"),
-        "huffman": ("basic.huffman", "Huffman"),
-        "union_find": ("basic.union_find", "UnionFind"),
+    "Arrays": {
+        "kadane": ("Arrays.kadane", "Kadane"),
+        "floyd": ("Arrays.floyd", "Floyd"),
+        "KMP": ("Arrays.KMP", "KMP"),
+        "quick_select": ("Arrays.quick_select", "QuickSelect"),
+        "boyer_moore": ("Arrays.boyer_moore", "BoyerMoore"),
+    },    
+    "Basic": {
+        "euclidian": ("Basic.euclidian", "Euclid"),
+        "huffman": ("Basic.huffman", "Huffman"),
+        "union_find": ("Basic.union_find", "UnionFind"),
+    },
+    "graphs": {
+        "bellman_ford": ("graphs.bellman_ford", "BellmanFord"),
+        "dijkstra": ("graphs.djikstra", "Djikstra"),
+        "flood_fill": ("graphs.flood_fill", "FloodFill"),
+        "floyd_warshall": ("graphs.floyd_warshall", "FloydWarshall"),
+        "kruskal": ("graphs.kruskal", "Kruskal"),
+        "lee": ("graphs.lee", "Lee"),
+        "topological_sort": ("graphs.topological_sort", "TopologicalSort"),
     },
     "searching": {
         "binary": ("searching.binary", "BinarySearch"),
@@ -20,22 +36,6 @@ ALGORITHM_MAP = {
         "quick_sort": ("sorting.quick_sort", "QuickSort"),
         "counting_sort": ("sorting.counting_sort", "CountingSort"),
     },
-    "arrays": {
-        "kadane": ("arrays.kadane", "Kadane"),
-        "floyd": ("arrays.floyd", "Floyd"),
-        "KMP": ("arrays.kmp", "KMP"),
-        "quick_select": ("arrays.quick_select", "QuickSelect"),
-        "boyer_moore": ("arrays.boyer_moore", "BoyerMoore"),
-    }
-    "graphs": {
-        "bellman_ford": ("graphs.bellman_ford", "BellmanFord"),
-        "dijkstra": ("graphs.djikstra", "Djikstra"),
-        "flood_fill": ("graphs.flood_fill", "FloodFill"),
-        "floyd_warshall": ("graphs.floyd_warshall", "FloydWarshall"),
-        "kruskal": ("graphs.kruskal", "Kruskal"),
-        "lee": ("graphs.lee", "Lee"),
-        "topological_sort": ("graphs.topological_sort", "TopologicalSort"),
-    }
 }
 
 def get_available_algorithms():
