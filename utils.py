@@ -14,9 +14,28 @@ ALGORITHM_MAP = {
     },
     "sorting": {
         "insertion_sort": ("sorting.insertion_sort", "InsertionSort"),
+        "selection_sort": ("sorting.selection_sort", "SelectionSort"),
+        "heap_sort": ("sorting.heap_sort", "HeapSort"),
+        "merge_sort": ("sorting.merge_sort", "MergeSort"),
         "quick_sort": ("sorting.quick_sort", "QuickSort"),
+        "counting_sort": ("sorting.counting_sort", "CountingSort"),
     },
-    # TODO: add more here
+    "arrays": {
+        "kadane": ("arrays.kadane", "Kadane"),
+        "floyd": ("arrays.floyd", "Floyd"),
+        "KMP": ("arrays.kmp", "KMP"),
+        "quick_select": ("arrays.quick_select", "QuickSelect"),
+        "boyer_moore": ("arrays.boyer_moore", "BoyerMoore"),
+    }
+    "graphs": {
+        "bellman_ford": ("graphs.bellman_ford", "BellmanFord"),
+        "dijkstra": ("graphs.djikstra", "Djikstra"),
+        "flood_fill": ("graphs.flood_fill", "FloodFill"),
+        "floyd_warshall": ("graphs.floyd_warshall", "FloydWarshall"),
+        "kruskal": ("graphs.kruskal", "Kruskal"),
+        "lee": ("graphs.lee", "Lee"),
+        "topological_sort": ("graphs.topological_sort", "TopologicalSort"),
+    }
 }
 
 def get_available_algorithms():
