@@ -1,12 +1,10 @@
 def bad_character_heuristic(pattern):
-    """Membuat tabel heuristik karakter buruk."""
     bad_char = [-1] * 256  # Untuk semua karakter ASCII
     for i, char in enumerate(pattern):
         bad_char[ord(char)] = i
     return bad_char
 
 def boyer_moore(text, pattern):
-    """Mengimplementasikan algoritma Boyer-Moore."""
     m, n = len(pattern), len(text)
     bad_char = bad_character_heuristic(pattern)
     s = 0  # Shift untuk pola
@@ -27,4 +25,4 @@ def boyer_moore(text, pattern):
 text = "ABAAABCD"
 pattern = "ABC"
 result = boyer_moore(text, pattern)
-print(f"Pola ditemukan di indeks: {result}")
+print(f"Pattern found at index: {result}")
