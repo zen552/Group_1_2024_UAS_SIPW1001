@@ -47,23 +47,3 @@ class Floyd:
             slow = arr[slow]
             fast = arr[fast]
         return slow
-
-#Contoh Penggunaan Floyd's Algorithm
-if __name__ == "__main__":
-    # Membuat linked list dengan siklus
-    node1 = Node(1)
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-
-    node1.nxt = node2
-    node2.nxt = node3
-    node3.nxt = node4
-    node4.nxt = node2  # Siklus di sini
-
-    ll = LinkedList(node1)
-    result = Floyd.cycle(ll)
-    if result:
-        print(f"Siklus ditemukan di node dengan nilai: {result.val}")
-    else:
-        print("Tidak ada siklus.")

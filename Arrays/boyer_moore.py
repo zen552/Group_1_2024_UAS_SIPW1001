@@ -32,14 +32,3 @@ class BoyerMoore:
 
     def run(self, text):
         return self.search(text)
-
-def main():
-    text = "ABAAABCD"
-    pattern = "ABC"
-    bm = BoyerMoore(pattern)
-    result = bm.search(text)
-    print(f"Pattern found at positions: {result}")
-
-
-if __name__ == "__main__":
-    main()

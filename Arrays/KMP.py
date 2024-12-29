@@ -35,9 +35,3 @@ class KMP:
             else:
                 i += 1
         return -1 if j < m else i-m
-
-# Contoh penggunaan Knuth-Morris-Pratt's Algorithm
-text = "ababcabcabababd"
-pattern = "ababd"
-result = KMP.run(text, pattern)
-print(f"Pattern found at index: {result}")
