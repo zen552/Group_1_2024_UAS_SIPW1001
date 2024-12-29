@@ -1,28 +1,45 @@
-def bad_character_heuristic(pattern):
-    bad_char = [-1] * 256  # Untuk semua karakter ASCII
-    for i, char in enumerate(pattern):
-        bad_char[ord(char)] = i
-    return bad_char
+class BoyerMoore:
+    def __init__(self, pattern):
+        self.pattern = pattern
+        self.m = len(pattern)
+        self.badChar = self.badCharHeuristic(pattern)
 
-def boyer_moore(text, pattern):
-    m, n = len(pattern), len(text)
-    bad_char = bad_character_heuristic(pattern)
-    s = 0  # Shift untuk pola
+    def badCharHeuristic(self, pattern):
+        badChar = [-1] * 256
+        for i, char in enumerate(pattern):
+            badChar[ord(char)] = i
+        return badChar
 
-    while s <= n - m:
-        j = m - 1
-        # Cocokkan pola dari belakang
-        while j >= 0 and pattern[j] == text[s + j]:
-            j -= 1
-        if j < 0:  # Pola ditemukan
-            return s
-        else:
-            # Pindahkan pola menggunakan tabel karakter buruk
-            s += max(1, j - bad_char[ord(text[s + j])])
-    return -1  # Pola tidak ditemukan
+    def search(self, text):
+        n = len(text)
+        s = 0 
+        match_positions = [] 
 
-# Contoh Penggunaan
-text = "ABAAABCD"
-pattern = "ABC"
-result = boyer_moore(text, pattern)
-print(f"Pattern found at index: {result}")
+        while s <= n - self.m:
+            j = self.m - 1
+
+            while j >= 0 and self.pattern[j] == text[s + j]:
+                j -= 1
+
+            if j < 0:
+                match_positions.append(s)
+                s += (self.m - self.badChar[ord(text[s + self.m])] 
+                      if s + self.m < n else 1)
+            else:
+                s += max(1, j - self.badChar[ord(text[s + j])])
+        
+        return match_positions
+
+    def run(self, text):
+        return self.search(text)
+
+def main():
+    text = "ABAAABCD"
+    pattern = "ABC"
+    bm = BoyerMoore(pattern)
+    result = bm.search(text)
+    print(f"Pattern found at positions: {result}")
+
+
+if __name__ == "__main__":
+    main()
