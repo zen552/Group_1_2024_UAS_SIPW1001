@@ -1,0 +1,5 @@
+argparse
+pytest
+numpy
+networkx  # For graph algorithms (if needed)
+matplotlib  # For visualizing results (optional)
