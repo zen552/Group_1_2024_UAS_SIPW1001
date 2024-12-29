@@ -1,0 +1,52 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment files
+.env
+*.env
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+.virtualenv/
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+*.log
+
+# Test output
+.coverage
+htmlcov/
+*.pytest_cache/
+.cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Build and distribution directories
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Pip dependency resolver
+pip-wheel-metadata/
+
+# Ignore requirements lock files (optional, if you only use requirements.txt)
+Pipfile
+Pipfile.lock
+
+# Ignore anything specific to this project
+tests/__pycache__/
