@@ -1,43 +1,14 @@
 import unittest
-from graphs.bellman_ford import BellmanFordAlgorithm
-from graphs.dijkstra import DijkstraAlgorithm
 from graphs.flood_fill import FloodFillAlgorithm
 from graphs.floyd_warshall import FloydWarshallAlgorithm
 from graphs.kruskal import KruskalAlgorithm
-from graphs.lee_algorithm import lee_algorithm
+from graphs.lee_algorithm import LeeAlgorithm
 from graphs.topological_sort_algorithm import TopologicalSortAlgorithm
+from graphs.bellman_ford import BellmanFordAlgorithm
+from graphs.dijkstra import DijkstraAlgorithm
 
 
 class TestGraphAlgorithms(unittest.TestCase):
-
-    # Test for Bellman-Ford Algorithm
-    def test_bellman_ford(self):
-        graph = BellmanFordAlgorithm(5)
-        graph.graph = [
-            [0, 1, -1],
-            [0, 2, 4],
-            [1, 2, 3],
-            [1, 3, 2],
-            [1, 4, 2],
-            [3, 2, 5],
-            [3, 1, 1],
-            [4, 3, -3]
-        ]
-        distances = graph.bellman_ford(0)
-        self.assertEqual(distances, {0: 0, 1: -1, 2: 2, 3: -2, 4: 1})  # Output yang diharapkan
-
-    # Test for Dijkstra's Algorithm
-    def test_dijkstra(self):
-        graph = DijkstraAlgorithm(5)
-        graph.adj_list = {
-            0: [(1, 10), (2, 3)],
-            1: [(2, 1), (3, 2)],
-            2: [(1, 4), (3, 8), (4, 2)],
-            3: [(4, 7)],
-            4: [(3, 9)]
-        }
-        distances = graph.dijkstra(0)
-        self.assertEqual(distances, {0: 0, 1: 7, 2: 3, 3: 9, 4: 5})  # Output yang diharapkan
 
     # Test for Flood Fill Algorithm
     def test_flood_fill(self):
@@ -52,7 +23,7 @@ class TestGraphAlgorithms(unittest.TestCase):
             [2, 2, 0],
             [2, 0, 1]
         ]
-        self.assertEqual(result, expected)  # Output yang diharapkan
+        self.assertEqual(result, expected)
 
     # Test for Floyd-Warshall Algorithm
     def test_floyd_warshall(self):
@@ -63,14 +34,14 @@ class TestGraphAlgorithms(unittest.TestCase):
             [2, 3, 1],
             [0, 3, 10]
         ]
-        distances = graph.floyd_warshall()
+        result = graph.floyd_warshall()
         expected = [
             [0, 5, 8, 9],
             [float('inf'), 0, 3, 4],
             [float('inf'), float('inf'), 0, 1],
             [float('inf'), float('inf'), float('inf'), 0]
         ]
-        self.assertEqual(distances, expected)  # Output yang diharapkan
+        self.assertEqual(result, expected)
 
     # Test for Kruskal's Algorithm
     def test_kruskal(self):
@@ -80,30 +51,28 @@ class TestGraphAlgorithms(unittest.TestCase):
         graph.add_edge(0, 3, 5)
         graph.add_edge(1, 3, 15)
         graph.add_edge(2, 3, 4)
-        mst = graph.kruskal()
+        result = graph.kruskal()
         expected = [
             [2, 3, 4],
             [0, 3, 5],
             [0, 1, 10]
         ]
-        self.assertEqual(mst, expected)  # Output yang diharapkan
+        self.assertEqual(result, expected)
 
     # Test for Lee Algorithm
     def test_lee_algorithm(self):
-        maze = [
-            [1, 0, 1, 1, 1],
-            [1, 1, 1, 0, 1],
-            [0, 1, 0, 1, 1],
-            [1, 1, 1, 1, 0],
-            [1, 0, 1, 1, 1]
+        grid = [
+            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0, 1],
+            [1, 1, 0, 0]
         ]
         start = (0, 0)
-        destination = (4, 4)
-        result = lee_algorithm(maze, start, destination)
-        self.assertEqual(result, 8)  # Output yang diharapkan setelah verifikasi
+        end = (3, 3)
+        result = LeeAlgorithm.lee_algorithm(grid, start, end)
+        self.assertEqual(result, 6)
 
-
-    # Test for Topological Sort
+    # Test for Topological Sort Algorithm
     def test_topological_sort(self):
         graph = TopologicalSortAlgorithm(6)
         graph.adj_list = {
@@ -114,8 +83,44 @@ class TestGraphAlgorithms(unittest.TestCase):
             0: [],
             1: []
         }
-        order = graph.topological_sort()
-        self.assertEqual(order, [5, 4, 2, 3, 1, 0])  # Output yang diharapkan
+        result = graph.topological_sort()
+
+        # Validasi: semua edges mengikuti aturan topological order
+        position = {node: index for index, node in enumerate(result)}
+        for u in graph.adj_list:
+            for v in graph.adj_list[u]:
+                self.assertLess(position[u], position[v])  # u harus datang sebelum v
+
+    # Test for Bellman-Ford Algorithm
+    def test_bellman_ford(self):
+        graph = BellmanFordAlgorithm(5)
+        graph.graph = [
+            [0, 1, -1],
+            [0, 2, 4],
+            [1, 2, 3],
+            [1, 3, 2],
+            [1, 4, 2],
+            [3, 2, 5],
+            [3, 1, 1],
+            [4, 3, -3]
+        ]
+        result = graph.bellman_ford(0)
+        expected = {0: 0, 1: -1, 2: 2, 3: -2, 4: 1}
+        self.assertEqual(result, expected)
+
+    # Test for Dijkstra's Algorithm
+    def test_dijkstra(self):
+        graph = DijkstraAlgorithm(5)
+        graph.adj_list = {
+            0: [(1, 10), (2, 3)],
+            1: [(2, 1), (3, 2)],
+            2: [(1, 4), (3, 8), (4, 2)],
+            3: [(4, 7)],
+            4: [(3, 9)]
+        }
+        result = graph.dijkstra(0)
+        expected = {0: 0, 1: 7, 2: 3, 3: 9, 4: 5}
+        self.assertEqual(result, expected)
 
 
 if __name__ == "__main__":
