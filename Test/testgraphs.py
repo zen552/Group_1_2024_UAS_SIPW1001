@@ -4,6 +4,8 @@ from graphs.dijkstra import DijkstraAlgorithm
 from graphs.flood_fill import FloodFillAlgorithm
 from graphs.floyd_warshall import FloydWarshallAlgorithm
 from graphs.kruskal import KruskalAlgorithm
+from graphs.lee_algorithm import lee_algorithm
+from graphs.topological_sort_algorithm import TopologicalSortAlgorithm
 
 
 class TestGraphAlgorithms(unittest.TestCase):
@@ -85,6 +87,35 @@ class TestGraphAlgorithms(unittest.TestCase):
             [0, 1, 10]
         ]
         self.assertEqual(mst, expected)  # Output yang diharapkan
+
+    # Test for Lee Algorithm
+    def test_lee_algorithm(self):
+        maze = [
+            [1, 0, 1, 1, 1],
+            [1, 1, 1, 0, 1],
+            [0, 1, 0, 1, 1],
+            [1, 1, 1, 1, 0],
+            [1, 0, 1, 1, 1]
+        ]
+        start = (0, 0)
+        destination = (4, 4)
+        result = lee_algorithm(maze, start, destination)
+        self.assertEqual(result, 8)  # Output yang diharapkan setelah verifikasi
+
+
+    # Test for Topological Sort
+    def test_topological_sort(self):
+        graph = TopologicalSortAlgorithm(6)
+        graph.adj_list = {
+            5: [2, 0],
+            4: [0, 1],
+            2: [3],
+            3: [1],
+            0: [],
+            1: []
+        }
+        order = graph.topological_sort()
+        self.assertEqual(order, [5, 4, 2, 3, 1, 0])  # Output yang diharapkan
 
 
 if __name__ == "__main__":
