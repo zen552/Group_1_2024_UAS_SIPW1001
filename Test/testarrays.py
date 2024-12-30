@@ -5,6 +5,7 @@ from Arrays.KMP import KMP
 from Arrays.quick_select import QuickSelect
 from Arrays.boyer_moore import BoyerMoore
 
+#python -m unittest discover -s Test
 
 class TestAlgorithms(unittest.TestCase):
 
