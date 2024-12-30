@@ -12,4 +12,6 @@ Jonathan Christiandinata - 422024018
 ```
 python main.py --category searching --algorithm depth_first --params "{1: [2, 3], 2: [4], 3: [4], 4: []}" 1
 
+To test arrays: python -m unittest discover -s Test
+
 ```
