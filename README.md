@@ -10,8 +10,10 @@ Jonathan Christiandinata - 422024018
 ## Usage
 
 ```
-python main.py --category searching --algorithm depth_first --params "{1: [2, 3], 2: [4], 3: [4], 4: []}" 1
-
-To test arrays: python -m unittest discover -s Test
+test arrays: python -m unittest Test.testarrays
+test basic: python -m unittest Test.testbasic
+test sorting: python -m unittest Test.testsorting
+test searching: python -m unittest Test.testsearching
+test graphs: python -m unittest Test.testgraphs
 
 ```
