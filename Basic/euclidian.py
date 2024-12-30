@@ -10,8 +10,3 @@ class Euclid:
         while b:
             a, b = b, a % b
         return a
-
-# Contoh penggunaan
-if __name__ == "__main__":
-    euc = Euclid(48, 18)
-    print(f"GCD dari {euc.a} dan {euc.b} adalah {euc.gcd()}")
